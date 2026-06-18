@@ -169,3 +169,44 @@ font-weight:bold;
 .btn:hover{
 background:#084298;
 }
+.hero{
+    background: linear-gradient(135deg,#2563eb,#1e40af);
+    color:white;
+    text-align:center;
+    padding:80px 20px;
+    border-radius:20px;
+    margin:20px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:20px;
+    opacity:0.9;
+}
+
+.hero-buttons{
+    margin-top:25px;
+}
+
+.btn{
+    background:white;
+    color:#2563eb;
+    padding:12px 25px;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    margin-right:10px;
+}
+
+.btn2{
+    background:transparent;
+    color:white;
+    border:2px solid white;
+    padding:12px 25px;
+    text-decoration:none;
+    border-radius:10px;
+}
