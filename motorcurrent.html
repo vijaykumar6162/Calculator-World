@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Motor Current Calculator</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fc;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:white;
+padding:30px;
+width:420px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+h1{
+text-align:center;
+color:#0d6efd;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:10px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.result{
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
+text-align:center;
+color:green;
+}
+
+a{
+display:block;
+text-align:center;
+margin-top:15px;
+text-decoration:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>⚙️ Motor Current Calculator</h1>
+
+<input type="number" id="power" placeholder="Motor Power (kW)">
+
+<input type="number" id="voltage" placeholder="Voltage (V)">
+
+<button onclick="calculate()">Calculate</button>
+
+<div id="result" class="result"></div>
+
+<a href="electrical.html">⬅ Back</a>
+
+</div>
+
+<script>
+
+function calculate(){
+
+let kw = parseFloat(document.getElementById("power").value);
+let voltage = parseFloat(document.getElementById("voltage").value);
+
+if(!kw || !voltage){
+document.getElementById("result").innerHTML="Enter values";
+return;
+}
+
+let current = (kw*1000)/(1.732*voltage);
+
+document.getElementById("result").innerHTML =
+"Current = " + current.toFixed(2) + " A";
+
+}
+
+</script>
+
+</body>
+</html>
