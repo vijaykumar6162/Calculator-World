@@ -1,18 +1,128 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Finance Calculators</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f7fc;
+}
+
+.hero{
+background:linear-gradient(135deg,#00c853,#009624);
+color:white;
+text-align:center;
+padding:60px 20px;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+opacity:0.9;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:18px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+border-top:5px solid #00c853;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.icon{
+font-size:35px;
+margin-bottom:15px;
+}
+
+.card h3{
+margin-bottom:10px;
+font-size:28px;
+}
+
+.card p{
+color:#666;
+margin-bottom:20px;
+line-height:1.6;
+}
+
+.btn{
+display:inline-block;
+padding:12px 25px;
+background:#0099ff;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+.btn:hover{
+background:#0077dd;
+}
+
+</style>
 </head>
+
 <body>
 
+<div class="hero">
 <h1>💰 Finance Calculators</h1>
+<p>Professional Finance Tools for Students & Business</p>
+</div>
 
-<a href="emi.html">EMI Calculator</a><br><br>
+<div class="container">
 
-<a href="gst.html">GST Calculator</a><br><br>
+<div class="card">
+<div class="icon">🏦</div>
+<h3>EMI Calculator</h3>
+<p>Calculate monthly EMI instantly.</p>
+<a href="emi.html" class="btn">Open</a>
+</div>
 
-<a href="pricecalculator.html">Market Price Calculator</a>
+<div class="card">
+<div class="icon">🧾</div>
+<h3>GST Calculator</h3>
+<p>Calculate GST amount and total price.</p>
+<a href="gst.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🛒</div>
+<h3>Market Price Calculator</h3>
+<p>Find product price using weight and rate.</p>
+<a href="pricecalculator.html" class="btn">Open</a>
+</div>
+
+</div>
 
 </body>
 </html>
