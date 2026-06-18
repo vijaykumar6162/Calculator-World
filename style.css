@@ -109,24 +109,25 @@ background:white;
 }
 
 .team h2{
-font-size:36px;
-margin-bottom:30px;
-color:#2563eb;
+font-size:48px;
+font-weight:700;
+color:#0d6efd;
+margin-bottom:40px;
 }
 
 .team-container{
 display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:30px;
+justify-content:flex-end;
+padding-right:100px;
 }
 
 .member{
-background:#f5f7fb;
+background:white;
 padding:25px;
-border-radius:15px;
+border-radius:20px;
 width:300px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
+box-shadow:0 10px 25px rgba(0,0,0,0.12);
+transition:0.3s;
 }
 
 .member img{
@@ -145,4 +146,7 @@ margin-bottom:10px;
 .member p{
 color:#555;
 margin:5px 0;
+}
+.member:hover{
+transform:translateY(-10px);
 }
