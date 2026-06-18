@@ -385,3 +385,26 @@ border-top:5px solid #ec4899;
 .market{
     border-top:5px solid #f59e0b;
 }
+header{
+position:relative;
+}
+
+.owner-name{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+font-size:24px;
+font-weight:800;
+font-family:Poppins,sans-serif;
+letter-spacing:2px;
+background:linear-gradient(
+90deg,
+#00e5ff,
+#ffffff,
+#00ff88
+);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 15px rgba(0,229,255,0.5);
+}
