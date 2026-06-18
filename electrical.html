@@ -1,25 +1,115 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>Finance Calculators</title>
+<meta charset="UTF-8">
+<title>Electrical Calculators</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f7fb;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    color:#0d6efd;
+    margin-bottom:40px;
+}
+
+.calculator-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#666;
+    margin-bottom:15px;
+}
+
+.btn{
+    background:#0d6efd;
+    color:white;
+    padding:10px 20px;
+    border-radius:10px;
+    text-decoration:none;
+    display:inline-block;
+}
+</style>
+
 </head>
 <body>
 
-<h1>⚡ Electrical Calculators</h1>
+<h1>⚡ Electrical Engineering Calculators</h1>
 
-<a href="ohm-law.html">Ohm Law Calculator</a><br><br>
+<div class="calculator-grid">
 
-<a href="energybill.html">Energy Bill Calculator</a>
-  <a href="voltagedrop.html">Voltage Drop Calculator</a><br><br>
+<div class="card">
+<h3>⚡ Ohm Law Calculator</h3>
+<p>Calculate Voltage, Current and Resistance.</p>
+<a href="ohm-law.html" class="btn">Open</a>
+</div>
 
-<a href="powerfactor.html">Power Factor Calculator</a><br><br>
+<div class="card">
+<h3>💡 Energy Bill Calculator</h3>
+<p>Calculate electricity bill instantly.</p>
+<a href="energybill.html" class="btn">Open</a>
+</div>
 
-<a href="kwtohp.html">kW to HP Calculator</a><br><br>
+<div class="card">
+<h3>📉 Voltage Drop Calculator</h3>
+<p>Find voltage drop in cable.</p>
+<a href="voltagedrop.html" class="btn">Open</a>
+</div>
 
-<a href="batterybackup.html">Battery Backup Calculator</a><br><br>
+<div class="card">
+<h3>⚙ Power Factor Calculator</h3>
+<p>Calculate PF and reactive power.</p>
+<a href="powerfactor.html" class="btn">Open</a>
+</div>
 
-<a href="transformer.html">Transformer Calculator</a><br><br>
+<div class="card">
+<h3>🔄 kW to HP Calculator</h3>
+<p>Convert kilowatt to horsepower.</p>
+<a href="kwtohp.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<h3>🔋 Battery Backup Calculator</h3>
+<p>Estimate battery backup time.</p>
+<a href="batterybackup.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<h3>⚡ Transformer Calculator</h3>
+<p>Calculate transformer current.</p>
+<a href="transformer.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<h3>🛠 Motor Current Calculator</h3>
+<p>Find motor current quickly.</p>
+<a href="motorcurrent.html" class="btn">Open</a>
+</div>
+
+</div>
 
 </body>
 </html>
