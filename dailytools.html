@@ -1,19 +1,207 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Daily Tools</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Tools Hub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f7fc;
+}
+
+.hero{
+background:linear-gradient(135deg,#00c6ff,#0072ff);
+color:white;
+text-align:center;
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+opacity:.9;
+}
+
+.search-box{
+margin-top:25px;
+}
+
+.search-box input{
+width:500px;
+max-width:90%;
+padding:15px;
+border:none;
+border-radius:12px;
+font-size:16px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+border-top:5px solid #00c6ff;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.icon{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.card h3{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.card p{
+color:#666;
+margin-bottom:20px;
+line-height:1.6;
+}
+
+.btn{
+display:inline-block;
+padding:12px 25px;
+background:#0099ff;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+.btn:hover{
+background:#0077dd;
+}
+
+</style>
 </head>
 <body>
 
-<h1>🗓️ Daily Tools</h1>
+<div class="hero">
+<h1>📅 Daily Tools Hub</h1>
+<p>Useful Daily Life Calculators & Productivity Tools</p>
 
-<ul>
-    <li><a href="age.html">Age Calculator</a></li>
-    <li><a href="#">Date Difference Calculator</a></li>
-    <li><a href="#">Time Calculator</a></li>
-</ul>
+<div class="search-box">
+<input type="text" placeholder="Search Daily Tool...">
+</div>
 
-<a href="index.html">⬅ Back to Home</a>
+</div>
+
+<div class="container">
+
+<div class="card">
+<div class="icon">🎂</div>
+<h3>Age Calculator</h3>
+<p>Calculate exact age in years, months and days.</p>
+<a href="age.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📆</div>
+<h3>Date Difference</h3>
+<p>Find difference between two dates instantly.</p>
+<a href="datedifference.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">⏰</div>
+<h3>Time Calculator</h3>
+<p>Add or subtract hours, minutes and seconds.</p>
+<a href="timecalculator.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📅</div>
+<h3>Days Between Dates</h3>
+<p>Calculate total days between any two dates.</p>
+<a href="daysbetween.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🎓</div>
+<h3>Attendance Calculator</h3>
+<p>Calculate attendance percentage for students.</p>
+<a href="attendance.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">💰</div>
+<h3>Salary Calculator</h3>
+<p>Estimate monthly and yearly salary.</p>
+<a href="salary.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🕒</div>
+<h3>Work Hours Calculator</h3>
+<p>Calculate total working hours.</p>
+<a href="workhours.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">💧</div>
+<h3>Water Intake Calculator</h3>
+<p>Find recommended daily water intake.</p>
+<a href="waterintake.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">😴</div>
+<h3>Sleep Calculator</h3>
+<p>Calculate ideal sleeping and waking time.</p>
+<a href="sleep.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📝</div>
+<h3>Study Time Calculator</h3>
+<p>Track daily study hours efficiently.</p>
+<a href="studytime.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🎯</div>
+<h3>Goal Tracker</h3>
+<p>Measure daily progress toward goals.</p>
+<a href="goaltracker.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🔢</div>
+<h3>Percentage Calculator</h3>
+<p>Quick percentage calculations.</p>
+<a href="percentage.html" class="btn">Open</a>
+</div>
+
+</div>
 
 </body>
 </html>
