@@ -1,1 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>kW to HP Calculator</title>
+</head>
+<body>
 
+<h1>⚡ kW to HP Calculator</h1>
+
+<input type="number" id="kw" placeholder="Enter kW">
+
+<button onclick="convert()">Calculate</button>
+
+<h2 id="result"></h2>
+
+<script>
+function convert() {
+
+let kw =
+parseFloat(document.getElementById("kw").value);
+
+let hp = kw * 1.341;
+
+document.getElementById("result").innerHTML =
+"HP = " + hp.toFixed(2);
+
+}
+</script>
+
+</body>
+</html>
