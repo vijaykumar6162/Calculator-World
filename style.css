@@ -102,3 +102,46 @@ box-shadow:0 5px 15px rgba(0,0,0,.1);
 font-size:40px;
 color:#2563eb;
 }
+.team{
+padding:60px 20px;
+text-align:center;
+background:white;
+}
+
+.team h2{
+font-size:36px;
+margin-bottom:30px;
+color:#2563eb;
+}
+
+.team-container{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:30px;
+}
+
+.member{
+background:#f5f7fb;
+padding:25px;
+border-radius:15px;
+width:300px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.member img{
+width:130px;
+height:130px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:15px;
+}
+
+.member h3{
+margin-bottom:10px;
+}
+
+.member p{
+color:#555;
+margin:5px 0;
+}
