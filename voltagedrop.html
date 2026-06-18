@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voltage Drop Calculator</title>
 
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fc;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:white;
+padding:30px;
+width:420px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+h1{
+text-align:center;
+color:#0d6efd;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:10px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+.result{
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+text-align:center;
+color:green;
+}
+
+.back{
+display:block;
+text-align:center;
+margin-top:15px;
+text-decoration:none;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h1>📉 Voltage Drop Calculator</h1>
+
+<input type="number" id="current" placeholder="Current (Ampere)">
+
+<input type="number" id="resistance" placeholder="Resistance (Ohm)">
+
+<button onclick="calculateVD()">Calculate</button>
+
+<div class="result" id="result"></div>
+
+<a href="electrical.html" class="back">⬅ Back</a>
+
+</div>
+
+<script>
+
+function calculateVD(){
+
+let I = parseFloat(document.getElementById("current").value);
+let R = parseFloat(document.getElementById("resistance").value);
+
+if(!I || !R){
+document.getElementById("result").innerHTML="Enter valid values";
+return;
+}
+
+let Vd = I * R;
+
+document.getElementById("result").innerHTML =
+"Voltage Drop = " + Vd.toFixed(2) + " Volt";
+
+}
+
+</script>
+
+</body>
+</html>
