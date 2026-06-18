@@ -1,14 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Finance Calculators</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Education Calculators</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f7fc;
+}
+
+.hero{
+background:linear-gradient(135deg,#2196f3,#1565c0);
+color:white;
+text-align:center;
+padding:60px 20px;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+opacity:.9;
+}
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+border-top:5px solid #2196f3;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+
+.icon{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.card h3{
+font-size:26px;
+margin-bottom:10px;
+color:#222;
+}
+
+.card p{
+color:#666;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+.btn{
+display:inline-block;
+padding:12px 25px;
+background:#2196f3;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+.btn:hover{
+background:#1565c0;
+}
+
+</style>
 </head>
+
 <body>
+
+<div class="hero">
 <h1>🎓 Education Calculators</h1>
+<p>Professional Student Tools & Academic Calculators</p>
+</div>
 
-<a href="cgpa.html">CGPA Calculator</a><br><br>
+<div class="container">
 
-<a href="percentage.html">Percentage Calculator</a>
+<div class="card">
+<div class="icon">📊</div>
+<h3>CGPA Calculator</h3>
+<p>Calculate your CGPA instantly.</p>
+<a href="cgpa.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📈</div>
+<h3>Percentage Calculator</h3>
+<p>Convert marks into percentage.</p>
+<a href="percentage.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📚</div>
+<h3>GPA Calculator</h3>
+<p>Calculate semester GPA easily.</p>
+<a href="gpa.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📝</div>
+<h3>Attendance Calculator</h3>
+<p>Track attendance requirements.</p>
+<a href="attendance.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🎯</div>
+<h3>Required Marks Calculator</h3>
+<p>Know marks needed to reach target.</p>
+<a href="requiredmarks.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🏆</div>
+<h3>Grade Calculator</h3>
+<p>Calculate final grades quickly.</p>
+<a href="grade.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🧮</div>
+<h3>Average Marks Calculator</h3>
+<p>Calculate average marks instantly.</p>
+<a href="averagemarks.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">💯</div>
+<h3>Pass Percentage Calculator</h3>
+<p>Calculate pass percentage.</p>
+<a href="passpercentage.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🎓</div>
+<h3>Scholarship Calculator</h3>
+<p>Check scholarship eligibility.</p>
+<a href="scholarship.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📅</div>
+<h3>Exam Countdown</h3>
+<p>Know days left for exams.</p>
+<a href="examcountdown.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📖</div>
+<h3>Reading Time Calculator</h3>
+<p>Estimate reading completion time.</p>
+<a href="readingtime.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">⏰</div>
+<h3>Study Planner</h3>
+<p>Create a smart study schedule.</p>
+<a href="studyplanner.html" class="btn">Open</a>
+</div>
+
+</div>
 
 </body>
 </html>
