@@ -394,17 +394,36 @@ position:absolute;
 left:50%;
 top:50%;
 transform:translate(-50%,-50%);
-font-size:24px;
-font-weight:800;
-font-family:Poppins,sans-serif;
-letter-spacing:2px;
+
+font-family:'Trebuchet MS',sans-serif;
+font-size:32px;
+font-weight:900;
+letter-spacing:3px;
+
 background:linear-gradient(
 90deg,
 #00e5ff,
 #ffffff,
-#00ff88
+#00ff88,
+#ffd700
 );
+
+background-size:300% 300%;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-text-shadow:0 0 15px rgba(0,229,255,0.5);
+
+animation:glowMove 5s linear infinite;
+
+text-shadow:
+0 0 10px rgba(0,229,255,.5),
+0 0 20px rgba(0,229,255,.4);
+}
+
+@keyframes glowMove{
+0%{
+background-position:0% 50%;
+}
+100%{
+background-position:100% 50%;
+}
 }
