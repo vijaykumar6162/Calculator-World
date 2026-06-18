@@ -1,19 +1,207 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Converters</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Converters Hub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f7fc;
+}
+
+.hero{
+background:linear-gradient(135deg,#6a5af9,#8b5cf6);
+color:white;
+text-align:center;
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+opacity:.9;
+}
+
+.search-box{
+margin-top:25px;
+}
+
+.search-box input{
+width:500px;
+max-width:90%;
+padding:15px;
+border:none;
+border-radius:12px;
+font-size:16px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+border-top:5px solid #6a5af9;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.icon{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.card h3{
+font-size:26px;
+margin-bottom:10px;
+}
+
+.card p{
+color:#666;
+margin-bottom:20px;
+line-height:1.6;
+}
+
+.btn{
+display:inline-block;
+padding:12px 25px;
+background:#0099ff;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+.btn:hover{
+background:#0077dd;
+}
+
+</style>
 </head>
 <body>
 
-<h1>📏 Converters</h1>
+<div class="hero">
+<h1>📏 Converter Hub</h1>
+<p>Professional Unit Conversion Tools</p>
 
-<ul>
-    <li><a href="#">Length Converter</a></li>
-    <li><a href="#">Weight Converter</a></li>
-    <li><a href="#">Temperature Converter</a></li>
-</ul>
+<div class="search-box">
+<input type="text" placeholder="Search Converter...">
+</div>
 
-<a href="index.html">⬅ Back to Home</a>
+</div>
+
+<div class="container">
+
+<div class="card">
+<div class="icon">📏</div>
+<h3>Length Converter</h3>
+<p>Convert meter, kilometer, feet, inch and mile.</p>
+<a href="length.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">⚖️</div>
+<h3>Weight Converter</h3>
+<p>Convert kg, gram, pound and ton.</p>
+<a href="weight.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🌡️</div>
+<h3>Temperature Converter</h3>
+<p>Convert Celsius, Fahrenheit and Kelvin.</p>
+<a href="temperature.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">⏱️</div>
+<h3>Time Converter</h3>
+<p>Convert second, minute, hour and day.</p>
+<a href="timeconverter.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">💧</div>
+<h3>Volume Converter</h3>
+<p>Convert litre, ml, gallon and cubic meter.</p>
+<a href="volume.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">⚡</div>
+<h3>Power Converter</h3>
+<p>Convert watt, kW, MW and HP.</p>
+<a href="powerconverter.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🔋</div>
+<h3>Energy Converter</h3>
+<p>Convert joule, kWh and calorie.</p>
+<a href="energyconverter.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🚗</div>
+<h3>Speed Converter</h3>
+<p>Convert km/h, m/s and mph.</p>
+<a href="speed.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📐</div>
+<h3>Area Converter</h3>
+<p>Convert acre, hectare, square meter and square foot.</p>
+<a href="area.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">💵</div>
+<h3>Currency Converter</h3>
+<p>Convert INR, USD, EUR and other currencies.</p>
+<a href="currency.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">💾</div>
+<h3>Data Storage Converter</h3>
+<p>Convert KB, MB, GB and TB.</p>
+<a href="datastorage.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📡</div>
+<h3>Frequency Converter</h3>
+<p>Convert Hz, kHz, MHz and GHz.</p>
+<a href="frequency.html" class="btn">Open</a>
+</div>
+
+</div>
 
 </body>
 </html>
