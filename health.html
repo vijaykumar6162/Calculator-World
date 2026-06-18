@@ -1,14 +1,209 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Finance Calculators</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Health Calculators</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f7fc;
+}
+
+.hero{
+background:linear-gradient(135deg,#e91e63,#ff4081);
+color:white;
+text-align:center;
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:20px;
+opacity:.9;
+}
+
+.search-box{
+margin-top:25px;
+}
+
+.search-box input{
+width:500px;
+max-width:90%;
+padding:15px;
+border:none;
+border-radius:12px;
+font-size:16px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+border-top:5px solid #e91e63;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.icon{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.card h3{
+margin-bottom:10px;
+font-size:26px;
+color:#222;
+}
+
+.card p{
+color:#666;
+margin-bottom:20px;
+line-height:1.6;
+}
+
+.btn{
+display:inline-block;
+padding:12px 25px;
+background:#0099ff;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+.btn:hover{
+background:#0077dd;
+}
+
+</style>
 </head>
+
 <body>
 
-<h1>🏥 Health Calculators</h1>
+<div class="hero">
+<h1>🏥 Health Calculator Hub</h1>
+<p>Professional Health & Fitness Tools</p>
 
-<a href="bmi.html">BMI Calculator</a>
+<div class="search-box">
+<input type="text" placeholder="Search Health Calculator...">
+</div>
+</div>
+
+<div class="container">
+
+<div class="card">
+<div class="icon">⚖️</div>
+<h3>BMI Calculator</h3>
+<p>Calculate Body Mass Index instantly.</p>
+<a href="bmi.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🔥</div>
+<h3>Calories Calculator</h3>
+<p>Estimate daily calorie requirements.</p>
+<a href="calories.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">💧</div>
+<h3>Water Intake Calculator</h3>
+<p>Calculate daily water requirement.</p>
+<a href="water.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">❤️</div>
+<h3>Heart Rate Calculator</h3>
+<p>Find target heart rate zones.</p>
+<a href="heartrate.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🚶</div>
+<h3>Steps Calculator</h3>
+<p>Estimate distance and calories from steps.</p>
+<a href="steps.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">📏</div>
+<h3>Body Fat Calculator</h3>
+<p>Estimate body fat percentage.</p>
+<a href="bodyfat.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🛌</div>
+<h3>Sleep Calculator</h3>
+<p>Find ideal sleep and wake-up times.</p>
+<a href="sleep.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">👶</div>
+<h3>Pregnancy Calculator</h3>
+<p>Estimate due date and pregnancy week.</p>
+<a href="pregnancy.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🎂</div>
+<h3>Age Calculator</h3>
+<p>Calculate exact age in years, months and days.</p>
+<a href="age.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🏃</div>
+<h3>Running Pace Calculator</h3>
+<p>Calculate pace, speed and distance.</p>
+<a href="running.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🍔</div>
+<h3>BMR Calculator</h3>
+<p>Calculate Basal Metabolic Rate.</p>
+<a href="bmr.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+<div class="icon">🧮</div>
+<h3>Ideal Weight Calculator</h3>
+<p>Find healthy body weight range.</p>
+<a href="idealweight.html" class="btn">Open</a>
+</div>
+
+</div>
 
 </body>
 </html>
