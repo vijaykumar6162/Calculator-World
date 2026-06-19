@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Days Between Dates Calculator</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:700px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+font-weight:600;
+margin-bottom:6px;
+}
+
+input{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+display:none;
+margin-top:20px;
+background:#f8fafc;
+padding:20px;
+border-radius:15px;
+}
+
+.card{
+background:white;
+padding:12px;
+margin:10px 0;
+border-left:5px solid #2563eb;
+border-radius:8px;
+}
+
+.highlight{
+color:#16a34a;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">📅</div>
+
+<h1>Days Between Dates Calculator</h1>
+
+<div class="input-group">
+<label>Start Date</label>
+<input type="date" id="startDate">
+</div>
+
+<div class="input-group">
+<label>End Date</label>
+<input type="date" id="endDate">
+</div>
+
+<button onclick="calculateDays()">
+Calculate Difference
+</button>
+
+<div class="result" id="result">
+
+<div class="card">
+📆 Total Days:
+<span class="highlight" id="days"></span>
+</div>
+
+<div class="card">
+📅 Total Weeks:
+<span class="highlight" id="weeks"></span>
+</div>
+
+<div class="card">
+🗓️ Total Months:
+<span class="highlight" id="months"></span>
+</div>
+
+<div class="card">
+🎯 Total Years:
+<span class="highlight" id="years"></span>
+</div>
+
+<div class="card">
+⏰ Total Hours:
+<span class="highlight" id="hours"></span>
+</div>
+
+<div class="card">
+⌚ Total Minutes:
+<span class="highlight" id="minutes"></span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateDays(){
+
+let startDate =
+new Date(document.getElementById("startDate").value);
+
+let endDate =
+new Date(document.getElementById("endDate").value);
+
+if(!document.getElementById("startDate").value ||
+!document.getElementById("endDate").value){
+
+alert("Please select both dates");
+return;
+}
+
+let diff =
+Math.abs(endDate - startDate);
+
+let days =
+Math.floor(diff / (1000*60*60*24));
+
+let weeks =
+(days/7).toFixed(2);
+
+let months =
+(days/30.44).toFixed(2);
+
+let years =
+(days/365.25).toFixed(2);
+
+let hours =
+Math.floor(diff/(1000*60*60));
+
+let minutes =
+Math.floor(diff/(1000*60));
+
+document.getElementById("days").innerHTML =
+days.toLocaleString();
+
+document.getElementById("weeks").innerHTML =
+weeks;
+
+document.getElementById("months").innerHTML =
+months;
+
+document.getElementById("years").innerHTML =
+years;
+
+document.getElementById("hours").innerHTML =
+hours.toLocaleString();
+
+document.getElementById("minutes").innerHTML =
+minutes.toLocaleString();
+
+document.getElementById("result").style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
