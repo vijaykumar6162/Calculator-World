@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work Hours Calculator</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:700px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-bottom:6px;
+font-weight:600;
+}
+
+input{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+display:none;
+margin-top:20px;
+background:#f8fafc;
+padding:20px;
+border-radius:15px;
+}
+
+.card{
+background:white;
+padding:12px;
+margin:10px 0;
+border-left:5px solid #2563eb;
+border-radius:8px;
+}
+
+.highlight{
+color:#16a34a;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">⏱️</div>
+
+<h1>Work Hours Calculator</h1>
+
+<div class="input-group">
+<label>Start Time</label>
+<input type="time" id="startTime">
+</div>
+
+<div class="input-group">
+<label>End Time</label>
+<input type="time" id="endTime">
+</div>
+
+<div class="input-group">
+<label>Break Time (Minutes)</label>
+<input type="number" id="breakTime" placeholder="Enter Break Time" value="0">
+</div>
+
+<button onclick="calculateHours()">
+Calculate Work Hours
+</button>
+
+<div class="result" id="result">
+
+<div class="card">
+⏰ Total Working Hours:
+<span class="highlight" id="workHours"></span>
+</div>
+
+<div class="card">
+📆 Total Working Minutes:
+<span class="highlight" id="workMinutes"></span>
+</div>
+
+<div class="card">
+⌛ Productive Time:
+<span class="highlight" id="productive"></span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateHours(){
+
+let start =
+document.getElementById("startTime").value;
+
+let end =
+document.getElementById("endTime").value;
+
+let breakTime =
+parseFloat(document.getElementById("breakTime").value) || 0;
+
+if(!start || !end){
+alert("Please select start and end time");
+return;
+}
+
+let startTime =
+new Date("2000-01-01 " + start);
+
+let endTime =
+new Date("2000-01-01 " + end);
+
+if(endTime < startTime){
+endTime.setDate(endTime.getDate() + 1);
+}
+
+let diff =
+(endTime - startTime) / (1000 * 60);
+
+diff -= breakTime;
+
+let hours =
+Math.floor(diff / 60);
+
+let minutes =
+Math.floor(diff % 60);
+
+document.getElementById("workHours").innerHTML =
+hours + " Hours " + minutes + " Minutes";
+
+document.getElementById("workMinutes").innerHTML =
+Math.floor(diff) + " Minutes";
+
+document.getElementById("productive").innerHTML =
+(hours + (minutes/60)).toFixed(2) + " Hours";
+
+document.getElementById("result").style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
