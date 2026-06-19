@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Time Calculator</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:700px;
+background:#fff;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-bottom:15px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+font-weight:600;
+margin-bottom:6px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+background:#2563eb;
+color:white;
+margin-top:10px;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+display:none;
+margin-top:20px;
+padding:20px;
+background:#f8fafc;
+border-radius:15px;
+}
+
+.card{
+background:white;
+padding:12px;
+margin:10px 0;
+border-left:5px solid #2563eb;
+border-radius:8px;
+}
+
+.highlight{
+color:#16a34a;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">⏰</div>
+
+<h1>Advanced Time Calculator</h1>
+
+<div class="row">
+
+<div>
+<h3>Time 1</h3>
+
+<div class="input-group">
+<label>Hours</label>
+<input type="number" id="h1" value="0">
+</div>
+
+<div class="input-group">
+<label>Minutes</label>
+<input type="number" id="m1" value="0">
+</div>
+
+<div class="input-group">
+<label>Seconds</label>
+<input type="number" id="s1" value="0">
+</div>
+</div>
+
+<div>
+<h3>Time 2</h3>
+
+<div class="input-group">
+<label>Hours</label>
+<input type="number" id="h2" value="0">
+</div>
+
+<div class="input-group">
+<label>Minutes</label>
+<input type="number" id="m2" value="0">
+</div>
+
+<div class="input-group">
+<label>Seconds</label>
+<input type="number" id="s2" value="0">
+</div>
+</div>
+
+</div>
+
+<div class="input-group">
+<label>Operation</label>
+<select id="operation">
+<option value="add">Add Time</option>
+<option value="subtract">Subtract Time</option>
+</select>
+</div>
+
+<button onclick="calculateTime()">
+Calculate Time
+</button>
+
+<div class="result" id="result">
+
+<div class="card">
+⏰ Result:
+<span class="highlight" id="finalTime"></span>
+</div>
+
+<div class="card">
+📊 Total Hours:
+<span class="highlight" id="totalHours"></span>
+</div>
+
+<div class="card">
+📊 Total Minutes:
+<span class="highlight" id="totalMinutes"></span>
+</div>
+
+<div class="card">
+📊 Total Seconds:
+<span class="highlight" id="totalSeconds"></span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateTime(){
+
+let h1 = Number(document.getElementById("h1").value);
+let m1 = Number(document.getElementById("m1").value);
+let s1 = Number(document.getElementById("s1").value);
+
+let h2 = Number(document.getElementById("h2").value);
+let m2 = Number(document.getElementById("m2").value);
+let s2 = Number(document.getElementById("s2").value);
+
+let op = document.getElementById("operation").value;
+
+let t1 = (h1*3600)+(m1*60)+s1;
+let t2 = (h2*3600)+(m2*60)+s2;
+
+let result;
+
+if(op==="add"){
+result=t1+t2;
+}else{
+result=Math.abs(t1-t2);
+}
+
+let hours=Math.floor(result/3600);
+let minutes=Math.floor((result%3600)/60);
+let seconds=result%60;
+
+document.getElementById("finalTime").innerHTML=
+hours+"h "+minutes+"m "+seconds+"s";
+
+document.getElementById("totalHours").innerHTML=
+(result/3600).toFixed(4);
+
+document.getElementById("totalMinutes").innerHTML=
+(result/60).toFixed(2);
+
+document.getElementById("totalSeconds").innerHTML=
+result.toLocaleString();
+
+document.getElementById("result").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
