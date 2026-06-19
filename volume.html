@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Volume Converter</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:650px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-bottom:6px;
+font-weight:600;
+}
+
+input,select{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+input:focus,
+select:focus{
+outline:none;
+border-color:#2563eb;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+display:none;
+margin-top:20px;
+background:#f8fafc;
+padding:20px;
+border-radius:15px;
+}
+
+.card{
+background:white;
+padding:12px;
+margin:10px 0;
+border-left:5px solid #2563eb;
+border-radius:8px;
+font-size:17px;
+}
+
+.highlight{
+color:#16a34a;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">🧪</div>
+
+<h1>Advanced Volume Converter</h1>
+
+<div class="input-group">
+<label>Enter Volume</label>
+<input type="number" id="value" placeholder="Enter Volume">
+</div>
+
+<div class="input-group">
+<label>From Unit</label>
+<select id="fromUnit">
+<option value="l">Liter (L)</option>
+<option value="ml">Milliliter (mL)</option>
+<option value="m3">Cubic Meter (m³)</option>
+<option value="cm3">Cubic Centimeter (cm³)</option>
+<option value="gal">Gallon (US)</option>
+<option value="qt">Quart</option>
+<option value="pt">Pint</option>
+<option value="cup">Cup</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>To Unit</label>
+<select id="toUnit">
+<option value="l">Liter (L)</option>
+<option value="ml">Milliliter (mL)</option>
+<option value="m3">Cubic Meter (m³)</option>
+<option value="cm3">Cubic Centimeter (cm³)</option>
+<option value="gal">Gallon (US)</option>
+<option value="qt">Quart</option>
+<option value="pt">Pint</option>
+<option value="cup">Cup</option>
+</select>
+</div>
+
+<button onclick="convertVolume()">
+Convert Volume
+</button>
+
+<div class="result" id="result">
+
+<div class="card">
+🧪 Converted Volume:
+<span class="highlight" id="output"></span>
+</div>
+
+<div class="card">
+📊 Conversion Completed Successfully
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function convertVolume(){
+
+let value =
+parseFloat(document.getElementById("value").value);
+
+let from =
+document.getElementById("fromUnit").value;
+
+let to =
+document.getElementById("toUnit").value;
+
+if(isNaN(value)){
+alert("Please enter volume");
+return;
+}
+
+const liters = {
+l:1,
+ml:0.001,
+m3:1000,
+cm3:0.001,
+gal:3.78541,
+qt:0.946353,
+pt:0.473176,
+cup:0.236588
+};
+
+let literValue = value * liters[from];
+let result = literValue / liters[to];
+
+document.getElementById("output").innerHTML =
+result.toLocaleString('en-IN',{
+maximumFractionDigits:8
+}) + " " + to;
+
+document.getElementById("result").style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
