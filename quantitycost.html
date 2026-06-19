@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Quantity Cost Calculator</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:800px;
+background:#fff;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+font-weight:600;
+margin-bottom:6px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+display:none;
+margin-top:20px;
+background:#f8fafc;
+padding:20px;
+border-radius:15px;
+}
+
+.card{
+background:white;
+padding:12px;
+margin:10px 0;
+border-left:5px solid #2563eb;
+border-radius:8px;
+font-size:17px;
+}
+
+.highlight{
+color:#16a34a;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">🛒</div>
+
+<h1>Advanced Quantity Cost Calculator</h1>
+
+<div class="input-group">
+<label>Item Name</label>
+<input type="text" id="item" placeholder="Rice, Wire, Apple">
+</div>
+
+<div class="input-group">
+<label>Price Per Unit (₹)</label>
+<input type="number" id="price">
+</div>
+
+<div class="input-group">
+<label>Quantity</label>
+<input type="number" id="qty" step="0.001">
+</div>
+
+<div class="input-group">
+<label>Unit</label>
+<select id="unit">
+<option>Kg</option>
+<option>Gram</option>
+<option>Liter</option>
+<option>Meter</option>
+<option>Piece</option>
+<option>Box</option>
+<option>Packet</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Discount (%)</label>
+<input type="number" id="discount" value="0">
+</div>
+
+<div class="input-group">
+<label>GST (%)</label>
+<input type="number" id="gst" value="0">
+</div>
+
+<button onclick="calculateCost()">
+Calculate Cost
+</button>
+
+<div class="result" id="result">
+
+<div class="card">
+📦 Item:
+<span class="highlight" id="itemName"></span>
+</div>
+
+<div class="card">
+💰 Base Cost:
+<span class="highlight" id="baseCost"></span>
+</div>
+
+<div class="card">
+🎁 Discount Amount:
+<span class="highlight" id="discountAmt"></span>
+</div>
+
+<div class="card">
+🧾 GST Amount:
+<span class="highlight" id="gstAmt"></span>
+</div>
+
+<div class="card">
+🏷️ Unit Price:
+<span class="highlight" id="unitPrice"></span>
+</div>
+
+<div class="card">
+🏆 Final Cost:
+<span class="highlight" id="finalCost"></span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateCost(){
+
+let item =
+document.getElementById("item").value;
+
+let price =
+parseFloat(document.getElementById("price").value);
+
+let qty =
+parseFloat(document.getElementById("qty").value);
+
+let unit =
+document.getElementById("unit").value;
+
+let discount =
+parseFloat(document.getElementById("discount").value) || 0;
+
+let gst =
+parseFloat(document.getElementById("gst").value) || 0;
+
+if(isNaN(price) || isNaN(qty)){
+alert("Please enter valid values");
+return;
+}
+
+let baseCost = price * qty;
+
+let discountAmount =
+(baseCost * discount) / 100;
+
+let afterDiscount =
+baseCost - discountAmount;
+
+let gstAmount =
+(afterDiscount * gst) / 100;
+
+let finalCost =
+afterDiscount + gstAmount;
+
+document.getElementById("itemName").innerHTML =
+item || "Product";
+
+document.getElementById("baseCost").innerHTML =
+"₹" + baseCost.toFixed(2);
+
+document.getElementById("discountAmt").innerHTML =
+"₹" + discountAmount.toFixed(2);
+
+document.getElementById("gstAmt").innerHTML =
+"₹" + gstAmount.toFixed(2);
+
+document.getElementById("unitPrice").innerHTML =
+"₹" + price.toFixed(2) + "/" + unit;
+
+document.getElementById("finalCost").innerHTML =
+"₹" + finalCost.toFixed(2);
+
+document.getElementById("result").style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
