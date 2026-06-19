@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quantity Cost Calculator</title>
+<title>Advanced Quantity Cost Calculator</title>
 
 <style>
 *{
@@ -24,23 +24,23 @@ padding:20px;
 
 .container{
 width:100%;
-max-width:700px;
-background:white;
+max-width:800px;
+background:#fff;
 padding:30px;
 border-radius:20px;
 box-shadow:0 15px 40px rgba(0,0,0,.3);
-}
-
-.icon{
-text-align:center;
-font-size:60px;
-margin-bottom:10px;
 }
 
 h1{
 text-align:center;
 color:#2563eb;
 margin-bottom:20px;
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
 }
 
 .input-group{
@@ -90,6 +90,7 @@ padding:12px;
 margin:10px 0;
 border-left:5px solid #2563eb;
 border-radius:8px;
+font-size:17px;
 }
 
 .highlight{
@@ -104,25 +105,21 @@ font-weight:bold;
 
 <div class="icon">🛒</div>
 
-<h1>Quantity Cost Calculator</h1>
+<h1>Advanced Quantity Cost Calculator</h1>
 
 <div class="input-group">
 <label>Item Name</label>
-<input type="text" id="itemName"
-placeholder="Example: Rice, Wire, Apple">
+<input type="text" id="item" placeholder="Rice, Wire, Apple">
 </div>
 
 <div class="input-group">
 <label>Price Per Unit (₹)</label>
-<input type="number" id="price"
-placeholder="Enter Price">
+<input type="number" id="price">
 </div>
 
 <div class="input-group">
 <label>Quantity</label>
-<input type="number" id="quantity"
-step="0.001"
-placeholder="Enter Quantity">
+<input type="number" id="qty" step="0.001">
 </div>
 
 <div class="input-group">
@@ -138,6 +135,16 @@ placeholder="Enter Quantity">
 </select>
 </div>
 
+<div class="input-group">
+<label>Discount (%)</label>
+<input type="number" id="discount" value="0">
+</div>
+
+<div class="input-group">
+<label>GST (%)</label>
+<input type="number" id="gst" value="0">
+</div>
+
 <button onclick="calculateCost()">
 Calculate Cost
 </button>
@@ -146,22 +153,32 @@ Calculate Cost
 
 <div class="card">
 📦 Item:
-<span class="highlight" id="item"></span>
+<span class="highlight" id="itemName"></span>
 </div>
 
 <div class="card">
-📏 Quantity:
-<span class="highlight" id="qty"></span>
+💰 Base Cost:
+<span class="highlight" id="baseCost"></span>
 </div>
 
 <div class="card">
-💰 Price Per Unit:
+🎁 Discount Amount:
+<span class="highlight" id="discountAmt"></span>
+</div>
+
+<div class="card">
+🧾 GST Amount:
+<span class="highlight" id="gstAmt"></span>
+</div>
+
+<div class="card">
+🏷️ Unit Price:
 <span class="highlight" id="unitPrice"></span>
 </div>
 
 <div class="card">
-🧾 Total Cost:
-<span class="highlight" id="totalCost"></span>
+🏆 Final Cost:
+<span class="highlight" id="finalCost"></span>
 </div>
 
 </div>
@@ -173,37 +190,59 @@ Calculate Cost
 function calculateCost(){
 
 let item =
-document.getElementById("itemName").value;
+document.getElementById("item").value;
 
 let price =
 parseFloat(document.getElementById("price").value);
 
-let quantity =
-parseFloat(document.getElementById("quantity").value);
+let qty =
+parseFloat(document.getElementById("qty").value);
 
 let unit =
 document.getElementById("unit").value;
 
-if(isNaN(price) || isNaN(quantity)){
+let discount =
+parseFloat(document.getElementById("discount").value) || 0;
+
+let gst =
+parseFloat(document.getElementById("gst").value) || 0;
+
+if(isNaN(price) || isNaN(qty)){
 alert("Please enter valid values");
 return;
 }
 
-let total = price * quantity;
+let baseCost = price * qty;
 
-document.getElementById("item").innerHTML =
+let discountAmount =
+(baseCost * discount) / 100;
+
+let afterDiscount =
+baseCost - discountAmount;
+
+let gstAmount =
+(afterDiscount * gst) / 100;
+
+let finalCost =
+afterDiscount + gstAmount;
+
+document.getElementById("itemName").innerHTML =
 item || "Product";
 
-document.getElementById("qty").innerHTML =
-quantity + " " + unit;
+document.getElementById("baseCost").innerHTML =
+"₹" + baseCost.toFixed(2);
+
+document.getElementById("discountAmt").innerHTML =
+"₹" + discountAmount.toFixed(2);
+
+document.getElementById("gstAmt").innerHTML =
+"₹" + gstAmount.toFixed(2);
 
 document.getElementById("unitPrice").innerHTML =
-"₹" + price.toLocaleString('en-IN');
+"₹" + price.toFixed(2) + "/" + unit;
 
-document.getElementById("totalCost").innerHTML =
-"₹" + total.toLocaleString('en-IN',{
-maximumFractionDigits:2
-});
+document.getElementById("finalCost").innerHTML =
+"₹" + finalCost.toFixed(2);
 
 document.getElementById("result").style.display =
 "block";
