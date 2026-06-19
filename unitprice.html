@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Price Calculator</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:750px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+font-weight:600;
+margin-bottom:6px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+display:none;
+margin-top:20px;
+background:#f8fafc;
+padding:20px;
+border-radius:15px;
+}
+
+.card{
+background:white;
+padding:12px;
+margin:10px 0;
+border-left:5px solid #2563eb;
+border-radius:8px;
+}
+
+.highlight{
+color:#16a34a;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">🏷️</div>
+
+<h1>Unit Price Calculator</h1>
+
+<div class="input-group">
+<label>Product Name</label>
+<input type="text" id="product"
+placeholder="Enter Product Name">
+</div>
+
+<div class="input-group">
+<label>Total Price (₹)</label>
+<input type="number" id="price"
+placeholder="Enter Total Price">
+</div>
+
+<div class="input-group">
+<label>Total Quantity</label>
+<input type="number" id="quantity"
+placeholder="Enter Quantity">
+</div>
+
+<div class="input-group">
+<label>Unit</label>
+<select id="unit">
+<option value="Kg">Kilogram (Kg)</option>
+<option value="Liter">Liter (L)</option>
+<option value="Piece">Piece</option>
+<option value="Meter">Meter</option>
+<option value="Box">Box</option>
+<option value="Packet">Packet</option>
+</select>
+</div>
+
+<button onclick="calculateUnitPrice()">
+Calculate Unit Price
+</button>
+
+<div class="result" id="result">
+
+<div class="card">
+📦 Product:
+<span class="highlight" id="productName"></span>
+</div>
+
+<div class="card">
+💰 Total Price:
+<span class="highlight" id="totalPrice"></span>
+</div>
+
+<div class="card">
+📏 Quantity:
+<span class="highlight" id="totalQty"></span>
+</div>
+
+<div class="card">
+🏷️ Price Per Unit:
+<span class="highlight" id="unitPrice"></span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateUnitPrice(){
+
+let product =
+document.getElementById("product").value;
+
+let price =
+parseFloat(document.getElementById("price").value);
+
+let quantity =
+parseFloat(document.getElementById("quantity").value);
+
+let unit =
+document.getElementById("unit").value;
+
+if(isNaN(price) || isNaN(quantity) || quantity<=0){
+alert("Please enter valid values");
+return;
+}
+
+let unitPrice = price / quantity;
+
+document.getElementById("productName").innerHTML =
+product || "Product";
+
+document.getElementById("totalPrice").innerHTML =
+"₹" + price.toLocaleString('en-IN');
+
+document.getElementById("totalQty").innerHTML =
+quantity + " " + unit;
+
+document.getElementById("unitPrice").innerHTML =
+"₹" + unitPrice.toFixed(2) + " / " + unit;
+
+document.getElementById("result").style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
