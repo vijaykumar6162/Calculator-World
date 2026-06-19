@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Intake Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#00c6ff,#0072ff);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    background:white;
+    width:100%;
+    max-width:500px;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+h1{
+    color:#0072ff;
+    margin-bottom:10px;
+}
+
+p{
+    color:#555;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#0072ff;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#0056cc;
+}
+
+.result{
+    margin-top:20px;
+    padding:15px;
+    background:#f1f8ff;
+    border-radius:10px;
+    display:none;
+}
+
+.result h2{
+    color:#0072ff;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>💧 Water Intake Calculator</h1>
+    <p>Calculate your daily water requirement</p>
+
+    <input type="number" id="weight" placeholder="Enter Weight (kg)">
+
+    <button onclick="calculateWater()">
+        Calculate Water Intake
+    </button>
+
+    <div class="result" id="result">
+        <h2 id="waterResult"></h2>
+    </div>
+</div>
+
+<script>
+function calculateWater() {
+    let weight = document.getElementById("weight").value;
+
+    if(weight === "" || weight <= 0){
+        alert("Please enter a valid weight.");
+        return;
+    }
+
+    let water = weight * 35; // 35 ml per kg
+
+    document.getElementById("result").style.display = "block";
+    document.getElementById("waterResult").innerHTML =
+        "You should drink approximately <br><b>" +
+        (water/1000).toFixed(2) +
+        " Liters</b> of water per day 💧";
+}
+</script>
+
+</body>
+</html>
