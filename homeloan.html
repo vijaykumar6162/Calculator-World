@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Loan Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.container{
+    width:90%;
+    max-width:550px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:5px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#16a34a;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#15803d;
+}
+
+.result{
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.1);
+    display:none;
+}
+
+.result p{
+    margin:10px 0;
+    font-size:18px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🏠 Home Loan Calculator</h1>
+
+<div class="input-group">
+<label>Property Price (₹)</label>
+<input type="number" id="propertyPrice" placeholder="Enter Property Price">
+</div>
+
+<div class="input-group">
+<label>Down Payment (₹)</label>
+<input type="number" id="downPayment" placeholder="Enter Down Payment">
+</div>
+
+<div class="input-group">
+<label>Interest Rate (% per year)</label>
+<input type="number" id="interestRate" placeholder="Enter Interest Rate">
+</div>
+
+<div class="input-group">
+<label>Loan Tenure (Years)</label>
+<input type="number" id="loanYears" placeholder="Enter Loan Tenure">
+</div>
+
+<button onclick="calculateHomeLoan()">Calculate Home Loan</button>
+
+<div class="result" id="result">
+
+<p><strong>Loan Amount:</strong> ₹ <span id="loanAmount"></span></p>
+
+<p><strong>Monthly EMI:</strong> ₹ <span id="emi"></span></p>
+
+<p><strong>Total Interest:</strong> ₹ <span id="totalInterest"></span></p>
+
+<p><strong>Total Payment:</strong> ₹ <span id="totalPayment"></span></p>
+
+</div>
+
+</div>
+
+<script>
+function calculateHomeLoan(){
+
+let propertyPrice =
+parseFloat(document.getElementById("propertyPrice").value);
+
+let downPayment =
+parseFloat(document.getElementById("downPayment").value);
+
+let rate =
+parseFloat(document.getElementById("interestRate").value);
+
+let years =
+parseFloat(document.getElementById("loanYears").value);
+
+if(!propertyPrice || !rate || !years){
+alert("Please fill all fields");
+return;
+}
+
+let principal = propertyPrice - downPayment;
+
+let monthlyRate = rate / 12 / 100;
+
+let months = years * 12;
+
+let emi =
+(principal * monthlyRate *
+Math.pow(1 + monthlyRate, months))
+/
+(Math.pow(1 + monthlyRate, months) - 1);
+
+let totalPayment = emi * months;
+
+let totalInterest = totalPayment - principal;
+
+document.getElementById("loanAmount").innerHTML =
+principal.toFixed(2);
+
+document.getElementById("emi").innerHTML =
+emi.toFixed(2);
+
+document.getElementById("totalInterest").innerHTML =
+totalInterest.toFixed(2);
+
+document.getElementById("totalPayment").innerHTML =
+totalPayment.toFixed(2);
+
+document.getElementById("result").style.display="block";
+}
+</script>
+
+</body>
+</html>
