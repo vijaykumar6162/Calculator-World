@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Goal Tracker</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:800px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+font-weight:600;
+margin-bottom:6px;
+}
+
+input{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.progress-box{
+display:none;
+margin-top:20px;
+}
+
+.progress-bar{
+width:100%;
+height:25px;
+background:#e5e7eb;
+border-radius:50px;
+overflow:hidden;
+margin:15px 0;
+}
+
+.progress-fill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#16a34a,#22c55e);
+transition:1s;
+}
+
+.card{
+background:#f8fafc;
+padding:15px;
+margin:10px 0;
+border-left:5px solid #2563eb;
+border-radius:10px;
+}
+
+.highlight{
+color:#16a34a;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">🎯</div>
+
+<h1>Advanced Goal Tracker</h1>
+
+<div class="input-group">
+<label>Goal Name</label>
+<input type="text" id="goalName"
+placeholder="Example: Lose 10kg, Study 300 Hours">
+</div>
+
+<div class="input-group">
+<label>Total Goal Target</label>
+<input type="number" id="goalTarget"
+placeholder="Enter Total Target">
+</div>
+
+<div class="input-group">
+<label>Completed So Far</label>
+<input type="number" id="goalDone"
+placeholder="Enter Completed Value">
+</div>
+
+<button onclick="trackGoal()">
+Track Progress
+</button>
+
+<div class="progress-box" id="result">
+
+<div class="card">
+🎯 Goal:
+<span class="highlight" id="goalText"></span>
+</div>
+
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<div class="card">
+📊 Progress:
+<span class="highlight" id="progressPercent"></span>
+</div>
+
+<div class="card">
+📌 Remaining:
+<span class="highlight" id="remaining"></span>
+</div>
+
+<div class="card">
+🏆 Status:
+<span class="highlight" id="status"></span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function trackGoal(){
+
+let goal =
+document.getElementById("goalName").value;
+
+let target =
+parseFloat(document.getElementById("goalTarget").value);
+
+let done =
+parseFloat(document.getElementById("goalDone").value);
+
+if(!goal || isNaN(target) || isNaN(done)){
+alert("Please fill all fields");
+return;
+}
+
+let progress =
+(done / target) * 100;
+
+if(progress > 100){
+progress = 100;
+}
+
+let remain =
+target - done;
+
+if(remain < 0){
+remain = 0;
+}
+
+let status = "Getting Started 🚀";
+
+if(progress >= 25){
+status = "Good Progress 👍";
+}
+
+if(progress >= 50){
+status = "Halfway There 🔥";
+}
+
+if(progress >= 75){
+status = "Almost Complete ⭐";
+}
+
+if(progress >= 100){
+status = "Goal Achieved 🏆";
+}
+
+document.getElementById("goalText").innerHTML =
+goal;
+
+document.getElementById("progressPercent").innerHTML =
+progress.toFixed(1) + "%";
+
+document.getElementById("remaining").innerHTML =
+remain;
+
+document.getElementById("status").innerHTML =
+status;
+
+document.getElementById("progressFill").style.width =
+progress + "%";
+
+document.getElementById("result").style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
