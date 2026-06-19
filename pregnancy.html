@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pregnancy Due Date Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    background:white;
+    width:100%;
+    max-width:550px;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    color:#e84393;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#e84393;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#d63384;
+}
+
+.result{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    background:#fff5fa;
+    border-radius:15px;
+    text-align:center;
+}
+
+.result h2{
+    color:#e84393;
+    margin-bottom:10px;
+}
+
+.result p{
+    margin:8px 0;
+    color:#444;
+    font-size:17px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🤰 Pregnancy Calculator</h1>
+    <p class="subtitle">
+        Calculate your estimated due date
+    </p>
+
+    <input type="date" id="lmpDate">
+
+    <button onclick="calculateDueDate()">
+        Calculate Due Date
+    </button>
+
+    <div class="result" id="result">
+        <h2 id="dueDate"></h2>
+        <p id="weeksPregnant"></p>
+        <p id="trimester"></p>
+    </div>
+</div>
+
+<script>
+function calculateDueDate(){
+
+    let lmp =
+    document.getElementById("lmpDate").value;
+
+    if(!lmp){
+        alert("Please select your last menstrual period date.");
+        return;
+    }
+
+    let lmpDate = new Date(lmp);
+
+    // Due Date = LMP + 280 days
+    let dueDate = new Date(lmpDate);
+    dueDate.setDate(dueDate.getDate() + 280);
+
+    let today = new Date();
+
+    let diffTime = today - lmpDate;
+    let weeks = Math.floor(diffTime / (1000*60*60*24*7));
+
+    let trimester = "";
+
+    if(weeks <= 13){
+        trimester = "1st Trimester";
+    }
+    else if(weeks <= 27){
+        trimester = "2nd Trimester";
+    }
+    else{
+        trimester = "3rd Trimester";
+    }
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("dueDate").innerHTML =
+    "📅 Estimated Due Date:<br>" +
+    dueDate.toDateString();
+
+    document.getElementById("weeksPregnant").innerHTML =
+    "🍼 Pregnancy Week: <b>" + weeks + "</b>";
+
+    document.getElementById("trimester").innerHTML =
+    "🌸 Current Stage: <b>" + trimester + "</b>";
+}
+</script>
+
+</body>
+</html>
