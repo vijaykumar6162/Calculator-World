@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Water Intake Calculator</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:700px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+font-weight:600;
+margin-bottom:6px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+display:none;
+margin-top:20px;
+background:#f8fafc;
+padding:20px;
+border-radius:15px;
+}
+
+.card{
+background:white;
+padding:12px;
+margin:10px 0;
+border-left:5px solid #2563eb;
+border-radius:8px;
+}
+
+.highlight{
+color:#16a34a;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">💧</div>
+
+<h1>Advanced Water Intake Calculator</h1>
+
+<div class="input-group">
+<label>Weight (kg)</label>
+<input type="number" id="weight" placeholder="Enter Weight">
+</div>
+
+<div class="input-group">
+<label>Age</label>
+<input type="number" id="age" placeholder="Enter Age">
+</div>
+
+<div class="input-group">
+<label>Activity Level</label>
+<select id="activity">
+<option value="0">Sedentary (Little Exercise)</option>
+<option value="300">Light Exercise</option>
+<option value="600">Moderate Exercise</option>
+<option value="1000">Heavy Exercise</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Weather</label>
+<select id="weather">
+<option value="0">Normal</option>
+<option value="300">Hot Weather</option>
+<option value="500">Very Hot Weather</option>
+</select>
+</div>
+
+<button onclick="calculateWater()">
+Calculate Water Intake
+</button>
+
+<div class="result" id="result">
+
+<div class="card">
+💧 Daily Water Intake:
+<span class="highlight" id="water"></span>
+</div>
+
+<div class="card">
+🥤 Glasses Per Day:
+<span class="highlight" id="glasses"></span>
+</div>
+
+<div class="card">
+🚰 Liters Per Day:
+<span class="highlight" id="liters"></span>
+</div>
+
+<div class="card">
+🏃 Fitness Recommendation:
+<span class="highlight" id="advice"></span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateWater(){
+
+let weight =
+parseFloat(document.getElementById("weight").value);
+
+let age =
+parseFloat(document.getElementById("age").value);
+
+let activity =
+parseFloat(document.getElementById("activity").value);
+
+let weather =
+parseFloat(document.getElementById("weather").value);
+
+if(isNaN(weight) || isNaN(age)){
+alert("Please enter weight and age");
+return;
+}
+
+let water = weight * 35;
+
+if(age > 55){
+water -= 200;
+}
+
+water += activity;
+water += weather;
+
+let liters = water / 1000;
+let glasses = water / 250;
+
+let advice = "Stay hydrated throughout the day";
+
+if(liters >= 4){
+advice = "High hydration required due to activity or heat";
+}
+
+document.getElementById("water").innerHTML =
+Math.round(water) + " ml";
+
+document.getElementById("glasses").innerHTML =
+Math.round(glasses) + " Glasses";
+
+document.getElementById("liters").innerHTML =
+liters.toFixed(2) + " Liters";
+
+document.getElementById("advice").innerHTML =
+advice;
+
+document.getElementById("result").style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
