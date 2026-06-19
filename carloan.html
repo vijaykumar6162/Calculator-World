@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Car Loan Calculator</title>
+<title>Advanced Car Loan Calculator</title>
 
 <style>
 *{
@@ -24,17 +24,29 @@ body{
 
 .container{
     width:100%;
-    max-width:550px;
+    max-width:600px;
     background:#fff;
     padding:30px;
     border-radius:20px;
     box-shadow:0 15px 40px rgba(0,0,0,0.3);
 }
 
+.car-icon{
+    text-align:center;
+    font-size:55px;
+    margin-bottom:10px;
+}
+
 h1{
     text-align:center;
     color:#2563eb;
-    margin-bottom:20px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#64748b;
+    margin-bottom:25px;
 }
 
 .input-group{
@@ -42,12 +54,13 @@ h1{
 }
 
 label{
-    font-weight:600;
     display:block;
-    margin-bottom:5px;
+    margin-bottom:6px;
+    font-weight:600;
+    color:#334155;
 }
 
-input{
+input,select{
     width:100%;
     padding:12px;
     border:2px solid #ddd;
@@ -55,7 +68,8 @@ input{
     font-size:16px;
 }
 
-input:focus{
+input:focus,
+select:focus{
     border-color:#2563eb;
     outline:none;
 }
@@ -79,26 +93,24 @@ button:hover{
 
 .result{
     margin-top:25px;
-    background:#f1f5f9;
+    background:#f8fafc;
     padding:20px;
     border-radius:15px;
     display:none;
 }
 
-.result p{
-    font-size:18px;
+.card{
+    background:white;
+    border-left:5px solid #2563eb;
+    padding:12px;
     margin:10px 0;
+    border-radius:8px;
+    font-size:17px;
 }
 
 .highlight{
     color:#16a34a;
     font-weight:bold;
-}
-
-.car-icon{
-    text-align:center;
-    font-size:50px;
-    margin-bottom:10px;
 }
 </style>
 </head>
@@ -108,76 +120,164 @@ button:hover{
 
 <div class="car-icon">🚗</div>
 
-<h1>Car Loan Calculator</h1>
+<h1>Advanced Car Loan Calculator</h1>
+<p class="subtitle">
+Calculate EMI using Years, Months or Days
+</p>
 
 <div class="input-group">
 <label>Car Price (₹)</label>
-<input type="number" id="amount" placeholder="Enter car price">
+<input type="number" id="amount" placeholder="Enter Car Price">
 </div>
 
 <div class="input-group">
 <label>Down Payment (₹)</label>
-<input type="number" id="downPayment" placeholder="Enter down payment">
+<input type="number" id="downPayment" placeholder="Enter Down Payment">
 </div>
 
 <div class="input-group">
-<label>Interest Rate (%)</label>
-<input type="number" id="rate" placeholder="Annual interest rate">
+<label>Interest Rate (% Per Year)</label>
+<input type="number" id="rate" placeholder="Enter Interest Rate">
 </div>
 
 <div class="input-group">
-<label>Loan Term (Years)</label>
-<input type="number" id="years" placeholder="Loan duration">
+<label>Loan Tenure</label>
+<input type="number" id="tenure" placeholder="Enter Loan Tenure">
 </div>
 
-<button onclick="calculateLoan()">Calculate EMI</button>
+<div class="input-group">
+<label>Tenure Unit</label>
+<select id="tenureUnit">
+<option value="year">Years</option>
+<option value="month">Months</option>
+<option value="day">Days</option>
+</select>
+</div>
+
+<button onclick="calculateLoan()">
+Calculate EMI
+</button>
 
 <div class="result" id="result">
-<p>Loan Amount: <span class="highlight" id="loanAmount"></span></p>
-<p>Monthly EMI: <span class="highlight" id="emi"></span></p>
-<p>Total Payment: <span class="highlight" id="totalPayment"></span></p>
-<p>Total Interest: <span class="highlight" id="totalInterest"></span></p>
+
+<div class="card">
+🚘 Loan Amount:
+<span class="highlight" id="loanAmount"></span>
+</div>
+
+<div class="card">
+💰 Monthly EMI:
+<span class="highlight" id="emi"></span>
+</div>
+
+<div class="card">
+📈 Total Interest:
+<span class="highlight" id="totalInterest"></span>
+</div>
+
+<div class="card">
+🏆 Total Payment:
+<span class="highlight" id="totalPayment"></span>
+</div>
+
+<div class="card">
+📅 Loan Duration:
+<span class="highlight" id="loanDuration"></span>
+</div>
+
 </div>
 
 </div>
 
 <script>
+
 function calculateLoan(){
 
-let price = parseFloat(document.getElementById("amount").value);
-let downPayment = parseFloat(document.getElementById("downPayment").value);
-let rate = parseFloat(document.getElementById("rate").value);
-let years = parseFloat(document.getElementById("years").value);
+let price =
+parseFloat(document.getElementById("amount").value);
 
-if(!price || !rate || !years){
+let downPayment =
+parseFloat(document.getElementById("downPayment").value) || 0;
+
+let rate =
+parseFloat(document.getElementById("rate").value);
+
+let tenure =
+parseFloat(document.getElementById("tenure").value);
+
+let unit =
+document.getElementById("tenureUnit").value;
+
+if(!price || !rate || !tenure){
     alert("Please fill all fields");
     return;
 }
 
 let principal = price - downPayment;
-let monthlyRate = rate / 100 / 12;
-let months = years * 12;
 
-let emi = (principal * monthlyRate * Math.pow(1+monthlyRate,months))
-         /(Math.pow(1+monthlyRate,months)-1);
+if(principal <= 0){
+    alert("Down Payment cannot be greater than Car Price");
+    return;
+}
+
+let months;
+
+if(unit === "year"){
+    months = tenure * 12;
+}
+else if(unit === "month"){
+    months = tenure;
+}
+else if(unit === "day"){
+    months = tenure / 30.44;
+}
+
+months = Math.max(1, Math.round(months));
+
+let monthlyRate = rate / 12 / 100;
+
+let emi;
+
+if(monthlyRate === 0){
+    emi = principal / months;
+}
+else{
+    emi =
+    (principal * monthlyRate *
+    Math.pow(1 + monthlyRate, months))
+    /
+    (Math.pow(1 + monthlyRate, months) - 1);
+}
 
 let totalPayment = emi * months;
 let totalInterest = totalPayment - principal;
 
 document.getElementById("loanAmount").innerHTML =
-"₹" + principal.toLocaleString();
+"₹" + principal.toLocaleString('en-IN',{
+maximumFractionDigits:2
+});
 
 document.getElementById("emi").innerHTML =
-"₹" + emi.toFixed(2);
-
-document.getElementById("totalPayment").innerHTML =
-"₹" + totalPayment.toFixed(2);
+"₹" + emi.toLocaleString('en-IN',{
+maximumFractionDigits:2
+});
 
 document.getElementById("totalInterest").innerHTML =
-"₹" + totalInterest.toFixed(2);
+"₹" + totalInterest.toLocaleString('en-IN',{
+maximumFractionDigits:2
+});
+
+document.getElementById("totalPayment").innerHTML =
+"₹" + totalPayment.toLocaleString('en-IN',{
+maximumFractionDigits:2
+});
+
+document.getElementById("loanDuration").innerHTML =
+months + " Months";
 
 document.getElementById("result").style.display="block";
 }
+
 </script>
 
 </body>
