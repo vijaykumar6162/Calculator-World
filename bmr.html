@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMR Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    padding:20px;
+}
+
+.container{
+    background:white;
+    width:100%;
+    max-width:600px;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    color:#764ba2;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+input, select{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#764ba2;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#5b3b85;
+}
+
+.result{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:15px;
+    background:#f5f3ff;
+}
+
+.result h2{
+    color:#764ba2;
+    margin-bottom:10px;
+}
+
+.info{
+    margin:10px 0;
+    font-size:18px;
+    color:#333;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>⚡ BMR Calculator</h1>
+    <p class="subtitle">
+        Calculate your daily calorie needs
+    </p>
+
+    <select id="gender">
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+
+    <input type="number" id="age" placeholder="Age (Years)">
+    <input type="number" id="weight" placeholder="Weight (kg)">
+    <input type="number" id="height" placeholder="Height (cm)">
+
+    <button onclick="calculateBMR()">
+        Calculate BMR
+    </button>
+
+    <div class="result" id="result">
+        <h2>Your Results</h2>
+
+        <div class="info" id="bmr"></div>
+        <div class="info" id="maintenance"></div>
+        <div class="info" id="fatloss"></div>
+        <div class="info" id="musclegain"></div>
+    </div>
+
+</div>
+
+<script>
+function calculateBMR(){
+
+    let age = parseFloat(document.getElementById("age").value);
+    let weight = parseFloat(document.getElementById("weight").value);
+    let height = parseFloat(document.getElementById("height").value);
+    let gender = document.getElementById("gender").value;
+
+    if(!age || !weight || !height || gender===""){
+        alert("Please fill all fields.");
+        return;
+    }
+
+    let bmr;
+
+    if(gender === "male"){
+        bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+    }else{
+        bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+    }
+
+    let maintenance = bmr * 1.55;
+    let fatloss = maintenance - 500;
+    let musclegain = maintenance + 300;
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("bmr").innerHTML =
+    "🔥 BMR: <b>" + Math.round(bmr) + " Calories/day</b>";
+
+    document.getElementById("maintenance").innerHTML =
+    "⚖️ Maintenance Calories: <b>" +
+    Math.round(maintenance) + " kcal/day</b>";
+
+    document.getElementById("fatloss").innerHTML =
+    "📉 Fat Loss Calories: <b>" +
+    Math.round(fatloss) + " kcal/day</b>";
+
+    document.getElementById("musclegain").innerHTML =
+    "💪 Muscle Gain Calories: <b>" +
+    Math.round(musclegain) + " kcal/day</b>";
+}
+</script>
+
+</body>
+</html>
