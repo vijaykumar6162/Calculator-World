@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Running Pace Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff512f,#dd2476);
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:600px;
+    background:#fff;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    color:#dd2476;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#dd2476;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#c2185b;
+}
+
+.result{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:15px;
+    background:#fff4f8;
+}
+
+.result h2{
+    color:#dd2476;
+    margin-bottom:10px;
+}
+
+.info{
+    margin:10px 0;
+    font-size:18px;
+    color:#333;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🏃 Running Pace Calculator</h1>
+    <p class="subtitle">
+        Calculate your running pace and speed
+    </p>
+
+    <input type="number" id="distance"
+    placeholder="Distance (Kilometers)">
+
+    <input type="number" id="hours"
+    placeholder="Hours">
+
+    <input type="number" id="minutes"
+    placeholder="Minutes">
+
+    <button onclick="calculateRunning()">
+        Calculate
+    </button>
+
+    <div class="result" id="result">
+
+        <h2>Your Running Stats</h2>
+
+        <div class="info" id="pace"></div>
+        <div class="info" id="speed"></div>
+        <div class="info" id="calories"></div>
+
+    </div>
+
+</div>
+
+<script>
+function calculateRunning(){
+
+    let distance =
+    parseFloat(document.getElementById("distance").value);
+
+    let hours =
+    parseFloat(document.getElementById("hours").value) || 0;
+
+    let minutes =
+    parseFloat(document.getElementById("minutes").value) || 0;
+
+    if(!distance || (hours===0 && minutes===0)){
+        alert("Please enter valid values.");
+        return;
+    }
+
+    let totalMinutes =
+    (hours * 60) + minutes;
+
+    let pace =
+    totalMinutes / distance;
+
+    let speed =
+    distance / (totalMinutes / 60);
+
+    let calories =
+    distance * 65;
+
+    document.getElementById("result").style.display =
+    "block";
+
+    document.getElementById("pace").innerHTML =
+    "⏱ Pace: <b>" + pace.toFixed(2) +
+    " min/km</b>";
+
+    document.getElementById("speed").innerHTML =
+    "🚀 Speed: <b>" + speed.toFixed(2) +
+    " km/h</b>";
+
+    document.getElementById("calories").innerHTML =
+    "🔥 Estimated Calories Burned: <b>" +
+    calories.toFixed(0) + " kcal</b>";
+}
+</script>
+
+</body>
+</html>
