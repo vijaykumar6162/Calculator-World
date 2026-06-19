@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIP Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:600px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+h1{
+    text-align:center;
+    color:#2c5364;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#2c5364;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1f3d4b;
+}
+
+.result{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    background:#f4f9fc;
+    border-radius:15px;
+}
+
+.result h2{
+    color:#2c5364;
+    margin-bottom:15px;
+}
+
+.info{
+    margin:12px 0;
+    font-size:18px;
+    color:#333;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📈 SIP Calculator</h1>
+    <p class="subtitle">
+        Calculate your future wealth through SIP investments
+    </p>
+
+    <input type="number" id="monthlyInvestment"
+    placeholder="Monthly Investment (₹)">
+
+    <input type="number" id="annualReturn"
+    placeholder="Expected Annual Return (%)">
+
+    <input type="number" id="years"
+    placeholder="Investment Period (Years)">
+
+    <button onclick="calculateSIP()">
+        Calculate SIP
+    </button>
+
+    <div class="result" id="result">
+
+        <h2>Investment Summary</h2>
+
+        <div class="info" id="invested"></div>
+        <div class="info" id="gain"></div>
+        <div class="info" id="maturity"></div>
+
+    </div>
+
+</div>
+
+<script>
+function calculateSIP(){
+
+    let P = parseFloat(document.getElementById("monthlyInvestment").value);
+    let annualRate = parseFloat(document.getElementById("annualReturn").value);
+    let years = parseFloat(document.getElementById("years").value);
+
+    if(!P || !annualRate || !years){
+        alert("Please fill all fields.");
+        return;
+    }
+
+    let r = annualRate / 12 / 100;
+    let n = years * 12;
+
+    let maturity =
+    P * (((Math.pow(1+r,n)-1)/r)*(1+r));
+
+    let invested = P * n;
+    let gain = maturity - invested;
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("invested").innerHTML =
+    "💰 Total Invested: <b>₹" +
+    invested.toLocaleString('en-IN') + "</b>";
+
+    document.getElementById("gain").innerHTML =
+    "🚀 Wealth Gain: <b>₹" +
+    Math.round(gain).toLocaleString('en-IN') + "</b>";
+
+    document.getElementById("maturity").innerHTML =
+    "🏆 Maturity Value: <b>₹" +
+    Math.round(maturity).toLocaleString('en-IN') + "</b>";
+}
+</script>
+
+</body>
+</html>
