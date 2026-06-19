@@ -3,87 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simple Interest Calculator</title>
+<title>Advanced Simple Interest Calculator</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#1e3c72,#2a5298);
-    padding:20px;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+padding:20px;
 }
 
 .container{
-    width:100%;
-    max-width:600px;
-    background:white;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+width:100%;
+max-width:650px;
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
 h1{
-    text-align:center;
-    color:#2a5298;
-    margin-bottom:10px;
+text-align:center;
+color:#2a5298;
+margin-bottom:10px;
 }
 
 .subtitle{
-    text-align:center;
-    color:#666;
-    margin-bottom:25px;
+text-align:center;
+color:#666;
+margin-bottom:25px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-bottom:5px;
+font-weight:600;
+color:#333;
 }
 
 input{
-    width:100%;
-    padding:14px;
-    margin-bottom:15px;
-    border:2px solid #ddd;
-    border-radius:10px;
-    font-size:16px;
+width:100%;
+padding:14px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+input:focus{
+outline:none;
+border-color:#2a5298;
 }
 
 button{
-    width:100%;
-    padding:14px;
-    background:#2a5298;
-    color:white;
-    border:none;
-    border-radius:10px;
-    font-size:18px;
-    cursor:pointer;
+width:100%;
+padding:14px;
+background:#2a5298;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
 }
 
 button:hover{
-    background:#1e3c72;
+background:#1e3c72;
 }
 
 .result{
-    display:none;
-    margin-top:20px;
-    padding:20px;
-    background:#f4f8ff;
-    border-radius:15px;
+display:none;
+margin-top:25px;
+padding:20px;
+background:#f4f8ff;
+border-radius:15px;
 }
 
 .result h2{
-    color:#2a5298;
-    margin-bottom:15px;
+color:#2a5298;
+margin-bottom:15px;
 }
 
 .info{
-    margin:12px 0;
-    font-size:18px;
-    color:#333;
+margin:12px 0;
+font-size:18px;
+padding:10px;
+background:white;
+border-radius:8px;
+border-left:4px solid #2a5298;
+}
+
+.highlight{
+font-weight:bold;
+color:#16a34a;
 }
 </style>
 </head>
@@ -91,70 +115,126 @@ button:hover{
 
 <div class="container">
 
-    <h1>🏦 Simple Interest Calculator</h1>
-    <p class="subtitle">
-        Calculate Simple Interest and Total Amount
-    </p>
+<h1>🏦 Advanced Simple Interest Calculator</h1>
 
-    <input type="number" id="principal"
-    placeholder="Principal Amount (₹)">
+<p class="subtitle">
+Calculate Interest, Maturity Amount & Future Growth
+</p>
 
-    <input type="number" id="rate"
-    placeholder="Interest Rate (% per year)">
+<div class="input-group">
+<label>Principal Amount (₹)</label>
+<input type="number" id="principal" placeholder="Enter Principal Amount">
+</div>
 
-    <input type="number" id="time"
-    placeholder="Time (Years)">
+<div class="input-group">
+<label>Interest Rate (% per year)</label>
+<input type="number" id="rate" placeholder="Enter Interest Rate">
+</div>
 
-    <button onclick="calculateSI()">
-        Calculate Interest
-    </button>
+<div class="input-group">
+<label>Time (Years)</label>
+<input type="number" id="time" placeholder="Enter Time in Years">
+</div>
 
-    <div class="result" id="result">
+<button onclick="calculateSI()">
+Calculate Interest
+</button>
 
-        <h2>Calculation Result</h2>
-
-        <div class="info" id="interest"></div>
-        <div class="info" id="total"></div>
-
-    </div>
+<div class="result" id="result"></div>
 
 </div>
 
 <script>
 function calculateSI(){
 
-    let principal =
-    parseFloat(document.getElementById("principal").value);
+let principal =
+parseFloat(document.getElementById("principal").value);
 
-    let rate =
-    parseFloat(document.getElementById("rate").value);
+let rate =
+parseFloat(document.getElementById("rate").value);
 
-    let time =
-    parseFloat(document.getElementById("time").value);
+let time =
+parseFloat(document.getElementById("time").value);
 
-    if(!principal || !rate || !time){
-        alert("Please fill all fields.");
-        return;
-    }
+if(!principal || !rate || !time){
+alert("Please fill all fields.");
+return;
+}
 
-    let simpleInterest =
-    (principal * rate * time) / 100;
+let simpleInterest =
+(principal * rate * time) / 100;
 
-    let totalAmount =
-    principal + simpleInterest;
+let totalAmount =
+principal + simpleInterest;
 
-    document.getElementById("result").style.display =
-    "block";
+let yearlyInterest =
+(principal * rate) / 100;
 
-    document.getElementById("interest").innerHTML =
-    "💰 Simple Interest: <b>₹" +
-    simpleInterest.toLocaleString('en-IN') +
-    "</b>";
+let monthlyInterest =
+yearlyInterest / 12;
 
-    document.getElementById("total").innerHTML =
-    "🏆 Total Amount: <b>₹" +
-    totalAmount.toLocaleString('en-IN') +
-    "</b>";
+let dailyInterest =
+yearlyInterest / 365;
+
+let growth =
+(simpleInterest / principal) * 100;
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("result").innerHTML = `
+
+<h2>📊 Investment Summary</h2>
+
+<div class="info">
+💵 Principal Amount:
+<span class="highlight">
+₹${principal.toLocaleString('en-IN')}
+</span>
+</div>
+
+<div class="info">
+📈 Total Interest Earned:
+<span class="highlight">
+₹${simpleInterest.toLocaleString('en-IN')}
+</span>
+</div>
+
+<div class="info">
+🏆 Maturity Amount:
+<span class="highlight">
+₹${totalAmount.toLocaleString('en-IN')}
+</span>
+</div>
+
+<div class="info">
+📅 Interest Per Year:
+<span class="highlight">
+₹${yearlyInterest.toLocaleString('en-IN')}
+</span>
+</div>
+
+<div class="info">
+📆 Interest Per Month:
+<span class="highlight">
+₹${monthlyInterest.toFixed(2)}
+</span>
+</div>
+
+<div class="info">
+⏳ Interest Per Day:
+<span class="highlight">
+₹${dailyInterest.toFixed(2)}
+</span>
+</div>
+
+<div class="info">
+🚀 Total Growth:
+<span class="highlight">
+${growth.toFixed(2)}%
+</span>
+</div>
+
+`;
 }
 </script>
 
