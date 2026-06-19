@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Study Time Calculator</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:750px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+font-weight:600;
+margin-bottom:6px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+display:none;
+margin-top:20px;
+background:#f8fafc;
+padding:20px;
+border-radius:15px;
+}
+
+.card{
+background:white;
+padding:12px;
+margin:10px 0;
+border-left:5px solid #2563eb;
+border-radius:8px;
+}
+
+.highlight{
+color:#16a34a;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">📚</div>
+
+<h1>Advanced Study Time Calculator</h1>
+
+<div class="input-group">
+<label>Total Subjects</label>
+<input type="number" id="subjects" placeholder="Enter Number of Subjects">
+</div>
+
+<div class="input-group">
+<label>Total Study Hours Available Per Day</label>
+<input type="number" id="hours" placeholder="Enter Daily Study Hours">
+</div>
+
+<div class="input-group">
+<label>Days Remaining Until Exam</label>
+<input type="number" id="days" placeholder="Enter Days">
+</div>
+
+<button onclick="calculateStudy()">
+Calculate Study Plan
+</button>
+
+<div class="result" id="result">
+
+<div class="card">
+📖 Study Hours Per Subject:
+<span class="highlight" id="perSubject"></span>
+</div>
+
+<div class="card">
+📅 Total Study Hours Before Exam:
+<span class="highlight" id="totalHours"></span>
+</div>
+
+<div class="card">
+🎯 Daily Study Target:
+<span class="highlight" id="target"></span>
+</div>
+
+<div class="card">
+🏆 Success Recommendation:
+<span class="highlight" id="advice"></span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateStudy(){
+
+let subjects =
+parseFloat(document.getElementById("subjects").value);
+
+let hours =
+parseFloat(document.getElementById("hours").value);
+
+let days =
+parseFloat(document.getElementById("days").value);
+
+if(isNaN(subjects) || isNaN(hours) || isNaN(days)){
+alert("Please fill all fields");
+return;
+}
+
+let totalHours = hours * days;
+let perSubject = totalHours / subjects;
+
+let advice =
+"Good preparation plan";
+
+if(perSubject < 15){
+advice =
+"Increase study hours for better exam preparation";
+}
+else if(perSubject > 40){
+advice =
+"Excellent preparation schedule";
+}
+
+document.getElementById("perSubject").innerHTML =
+perSubject.toFixed(1) + " Hours";
+
+document.getElementById("totalHours").innerHTML =
+totalHours.toFixed(1) + " Hours";
+
+document.getElementById("target").innerHTML =
+hours.toFixed(1) + " Hours / Day";
+
+document.getElementById("advice").innerHTML =
+advice;
+
+document.getElementById("result").style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
