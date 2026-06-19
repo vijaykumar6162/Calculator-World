@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profit Margin Calculator</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:750px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.icon{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+font-weight:600;
+margin-bottom:6px;
+}
+
+input{
+width:100%;
+padding:12px;
+border:2px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+display:none;
+margin-top:20px;
+background:#f8fafc;
+padding:20px;
+border-radius:15px;
+}
+
+.card{
+background:white;
+padding:12px;
+margin:10px 0;
+border-left:5px solid #2563eb;
+border-radius:8px;
+}
+
+.profit{
+color:#16a34a;
+font-weight:bold;
+}
+
+.loss{
+color:#dc2626;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">📈</div>
+
+<h1>Profit Margin Calculator</h1>
+
+<div class="input-group">
+<label>Cost Price (₹)</label>
+<input type="number" id="costPrice"
+placeholder="Enter Cost Price">
+</div>
+
+<div class="input-group">
+<label>Selling Price (₹)</label>
+<input type="number" id="sellingPrice"
+placeholder="Enter Selling Price">
+</div>
+
+<button onclick="calculateMargin()">
+Calculate Margin
+</button>
+
+<div class="result" id="result">
+
+<div class="card">
+💰 Profit / Loss:
+<span id="profitLoss"></span>
+</div>
+
+<div class="card">
+📊 Profit Percentage:
+<span id="profitPercent"></span>
+</div>
+
+<div class="card">
+📈 Margin Percentage:
+<span id="marginPercent"></span>
+</div>
+
+<div class="card">
+🏷️ Markup Percentage:
+<span id="markupPercent"></span>
+</div>
+
+<div class="card">
+💵 Revenue:
+<span id="revenue"></span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateMargin(){
+
+let cp =
+parseFloat(document.getElementById("costPrice").value);
+
+let sp =
+parseFloat(document.getElementById("sellingPrice").value);
+
+if(isNaN(cp) || isNaN(sp) || cp<=0){
+alert("Please enter valid values");
+return;
+}
+
+let profit = sp - cp;
+
+let profitPercent =
+(profit / cp) * 100;
+
+let marginPercent =
+(profit / sp) * 100;
+
+let markupPercent =
+(profit / cp) * 100;
+
+let statusClass =
+profit >= 0 ? "profit" : "loss";
+
+let statusText =
+profit >= 0 ?
+"Profit ₹" + profit.toFixed(2) :
+"Loss ₹" + Math.abs(profit).toFixed(2);
+
+document.getElementById("profitLoss").innerHTML =
+`<span class="${statusClass}">${statusText}</span>`;
+
+document.getElementById("profitPercent").innerHTML =
+profitPercent.toFixed(2) + "%";
+
+document.getElementById("marginPercent").innerHTML =
+marginPercent.toFixed(2) + "%";
+
+document.getElementById("markupPercent").innerHTML =
+markupPercent.toFixed(2) + "%";
+
+document.getElementById("revenue").innerHTML =
+"₹" + sp.toLocaleString('en-IN');
+
+document.getElementById("result").style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
