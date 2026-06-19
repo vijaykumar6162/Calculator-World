@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FD Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    background:#fff;
+    width:100%;
+    max-width:550px;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+h1{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:20px;
+}
+
+.icon{
+    text-align:center;
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:5px;
+    font-weight:600;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+input:focus, select:focus{
+    border-color:#2563eb;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    display:none;
+    margin-top:25px;
+    background:#f1f5f9;
+    padding:20px;
+    border-radius:15px;
+}
+
+.result p{
+    margin:10px 0;
+    font-size:18px;
+}
+
+.highlight{
+    color:#16a34a;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="icon">🏦</div>
+
+<h1>FD Calculator</h1>
+
+<div class="input-group">
+<label>Deposit Amount (₹)</label>
+<input type="number" id="principal" placeholder="Enter FD Amount">
+</div>
+
+<div class="input-group">
+<label>Interest Rate (% p.a.)</label>
+<input type="number" id="rate" placeholder="Enter Interest Rate">
+</div>
+
+<div class="input-group">
+<label>Time Period (Years)</label>
+<input type="number" id="years" placeholder="Enter Duration">
+</div>
+
+<div class="input-group">
+<label>Compounding Frequency</label>
+<select id="compound">
+<option value="1">Yearly</option>
+<option value="2">Half-Yearly</option>
+<option value="4">Quarterly</option>
+<option value="12">Monthly</option>
+</select>
+</div>
+
+<button onclick="calculateFD()">Calculate FD Returns</button>
+
+<div class="result" id="result">
+<p>Invested Amount: <span class="highlight" id="invested"></span></p>
+<p>Maturity Amount: <span class="highlight" id="maturity"></span></p>
+<p>Total Interest Earned: <span class="highlight" id="interest"></span></p>
+</div>
+
+</div>
+
+<script>
+function calculateFD(){
+
+let P = parseFloat(document.getElementById("principal").value);
+let R = parseFloat(document.getElementById("rate").value);
+let T = parseFloat(document.getElementById("years").value);
+let N = parseFloat(document.getElementById("compound").value);
+
+if(!P || !R || !T){
+    alert("Please fill all fields.");
+    return;
+}
+
+let maturity = P * Math.pow((1 + (R/100)/N), N*T);
+let interest = maturity - P;
+
+document.getElementById("invested").innerHTML =
+"₹" + P.toLocaleString();
+
+document.getElementById("maturity").innerHTML =
+"₹" + maturity.toFixed(2);
+
+document.getElementById("interest").innerHTML =
+"₹" + interest.toFixed(2);
+
+document.getElementById("result").style.display="block";
+}
+</script>
+
+</body>
+</html>
