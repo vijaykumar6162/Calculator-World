@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Loan Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:550px;
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+h1{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:20px;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+label{
+    font-weight:600;
+    display:block;
+    margin-bottom:5px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+input:focus{
+    border-color:#2563eb;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:10px;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    margin-top:25px;
+    background:#f1f5f9;
+    padding:20px;
+    border-radius:15px;
+    display:none;
+}
+
+.result p{
+    font-size:18px;
+    margin:10px 0;
+}
+
+.highlight{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.car-icon{
+    text-align:center;
+    font-size:50px;
+    margin-bottom:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="car-icon">🚗</div>
+
+<h1>Car Loan Calculator</h1>
+
+<div class="input-group">
+<label>Car Price (₹)</label>
+<input type="number" id="amount" placeholder="Enter car price">
+</div>
+
+<div class="input-group">
+<label>Down Payment (₹)</label>
+<input type="number" id="downPayment" placeholder="Enter down payment">
+</div>
+
+<div class="input-group">
+<label>Interest Rate (%)</label>
+<input type="number" id="rate" placeholder="Annual interest rate">
+</div>
+
+<div class="input-group">
+<label>Loan Term (Years)</label>
+<input type="number" id="years" placeholder="Loan duration">
+</div>
+
+<button onclick="calculateLoan()">Calculate EMI</button>
+
+<div class="result" id="result">
+<p>Loan Amount: <span class="highlight" id="loanAmount"></span></p>
+<p>Monthly EMI: <span class="highlight" id="emi"></span></p>
+<p>Total Payment: <span class="highlight" id="totalPayment"></span></p>
+<p>Total Interest: <span class="highlight" id="totalInterest"></span></p>
+</div>
+
+</div>
+
+<script>
+function calculateLoan(){
+
+let price = parseFloat(document.getElementById("amount").value);
+let downPayment = parseFloat(document.getElementById("downPayment").value);
+let rate = parseFloat(document.getElementById("rate").value);
+let years = parseFloat(document.getElementById("years").value);
+
+if(!price || !rate || !years){
+    alert("Please fill all fields");
+    return;
+}
+
+let principal = price - downPayment;
+let monthlyRate = rate / 100 / 12;
+let months = years * 12;
+
+let emi = (principal * monthlyRate * Math.pow(1+monthlyRate,months))
+         /(Math.pow(1+monthlyRate,months)-1);
+
+let totalPayment = emi * months;
+let totalInterest = totalPayment - principal;
+
+document.getElementById("loanAmount").innerHTML =
+"₹" + principal.toLocaleString();
+
+document.getElementById("emi").innerHTML =
+"₹" + emi.toFixed(2);
+
+document.getElementById("totalPayment").innerHTML =
+"₹" + totalPayment.toFixed(2);
+
+document.getElementById("totalInterest").innerHTML =
+"₹" + totalInterest.toFixed(2);
+
+document.getElementById("result").style.display="block";
+}
+</script>
+
+</body>
+</html>
